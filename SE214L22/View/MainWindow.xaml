@@ -1,0 +1,218 @@
+﻿<Window x:Class="SE214L22.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SE214L22.View"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="700"
+        Width="1200"
+        AllowsTransparency="True"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Loaded="Window_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="3"
+              Background="#FF09C391">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <TextBlock DataContext="{StaticResource SessionViewModel}"
+                       Text="{Binding UserName}"
+                       FontWeight="DemiBold"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
+            <Button x:Name="btnUpdatePassword"
+                    Click="btnUpdatePassword_Click"
+                    Grid.Column="1"
+                    Style="{StaticResource MaterialDesignIconForegroundButton}"
+                    ToolTip="Đổi mật khẩu">
+                <materialDesign:PackIcon Kind="Key" />
+            </Button>
+            <Button x:Name="btnLogout"
+                    Click="btnLogout_Click"
+                    Grid.Column="2"
+                    Style="{StaticResource MaterialDesignIconForegroundButton}"
+                    ToolTip="Đăng xuất">
+                <materialDesign:PackIcon Kind="LogoutVariant" />
+            </Button>
+            <Label x:Name="lbTitle"
+                   MouseMove="lbTitle_MouseMove"
+                   MouseDown="lbTitle_MouseDown"
+                   MouseUp="lbTitle_MouseUp"
+                   Grid.Column="3"
+                   Content="TRANG CHỦ"
+                   FontWeight="ExtraBold"
+                   FontSize="20"
+                   Grid.ColumnSpan="3"
+                   Padding="0 0 160 0"
+                   VerticalContentAlignment="Center"
+                   HorizontalContentAlignment="Center" />
+            <Button x:Name="btnMinimize"
+                    Grid.Column="4"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Height="Auto"
+                    Click="btnMinimize_Click">
+                <materialDesign:PackIcon Kind="WindowMinimize"
+                                         VerticalAlignment="Center"
+                                         Height="20"
+                                         Width="20" />
+            </Button>
+            <Button x:Name="btnClose"
+                    Grid.Column="5"
+                    Background="#FF0000"
+                    Height="Auto"
+                    Margin="5"
+                    BorderThickness="0"
+                    Click="btnClose_Click">
+                <materialDesign:PackIcon Kind="WindowClose"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="913*" />
+                <ColumnDefinition Width="207*" />
+            </Grid.ColumnDefinitions>
+            <materialDesign:Card Grid.Column="0"
+                                 Background="#FF09C391"
+                                 BorderThickness="0"
+                                 VerticalAlignment="Stretch"
+                                 Margin="0,0,0,-0.4">
+                <ListView x:Name="ListViewMenu"
+                          Foreground="Black"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListViewItem x:Name="ItemHome"
+                                  ToolTip="Trang chủ"
+                                  Background="#FF09C391"
+                                  Opacity="1"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Home"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemSell"
+                                  ToolTip="Bán hàng"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="CartPlus"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemProduct"
+                                  ToolTip="Sản phẩm"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="DesktopMac"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemImportProduct"
+                                  ToolTip="Quản lý nhập hàng"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="ArrowDownBoldHexagonOutline"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemWarranty"
+                                  ToolTip="Bảo hành"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Security"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemStaff"
+                                  ToolTip="Nhân viên"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="AccountCircle"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemReport"
+                                  ToolTip="Báo cáo thống kê"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Finance"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemCustomer"
+                                  ToolTip="Khách hàng"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="AccountMultiple"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                    <ListViewItem x:Name="ItemSetting"
+                                  ToolTip="Thay đổi tham số"
+                                  Background="#FF09C391"
+                                  Opacity="0.8"
+                                  Height="70"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Settings"
+                                                 Width="60"
+                                                 Height="40" />
+                    </ListViewItem>
+                </ListView>
+            </materialDesign:Card>
+            <UserControl x:Name="mainControl"
+                         Grid.Column="1"
+                         Grid.ColumnSpan="2"
+                         Margin="0,0,0,-0.4" />
+        </Grid>
+    </Grid>
+</Window>

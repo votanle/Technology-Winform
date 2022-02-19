@@ -1,0 +1,165 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SE214L22" 
+                    xmlns:Orders="clr-namespace:SE214L22.Core.ViewModels.Orders;assembly=SE214L22.Core"
+                    xmlns:Home="clr-namespace:SE214L22.Core.ViewModels.Home;assembly=SE214L22.Core" 
+                    xmlns:Settings="clr-namespace:SE214L22.Core.ViewModels.Settings;assembly=SE214L22.Core" 
+                    xmlns:Sells="clr-namespace:SE214L22.Core.ViewModels.Sells;assembly=SE214L22.Core"
+                    xmlns:Users="clr-namespace:SE214L22.Core.ViewModels.Users;assembly=SE214L22.Core" 
+                    xmlns:Customers="clr-namespace:SE214L22.Core.ViewModels.Customers;assembly=SE214L22.Core"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    xmlns:Warranties="clr-namespace:SE214L22.Core.ViewModels.Warranties;assembly=SE214L22.Core" 
+                    xmlns:Reports="clr-namespace:SE214L22.Core.ViewModels.Reports;assembly=SE214L22.Core" xmlns:Products="clr-namespace:SE214L22.Core.ViewModels.Products;assembly=SE214L22.Core">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DatePicker.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!-- ViewModels -->
+    <Users:UserViewModel x:Key="UserViewModel" />
+    <Customers:CustomerViewModel x:Key="CustomerViewModel" />
+    <Users:SessionViewModel x:Key="SessionViewModel" />
+    <Orders:OrderCreationViewModel x:Key="OrderCreationViewModel" />
+    <Orders:OrderViewModel x:Key="OrderViewModel" />
+    <Orders:ReceiptViewModel x:Key="ReceiptViewModel" />
+    <Orders:ReceiptCreationViewModel x:Key="ReceiptCreationViewModel" />
+    <Sells:SellViewModel x:Key="SellViewModel" />
+    <Home:HomeViewModel x:Key="HomeViewModel" />
+    <Warranties:WarrantyOrderCreationViewModel x:Key="WarrantyOrderCreationViewModel" />
+    <Warranties:WarrantyOrderListViewModel x:Key="WarrantyOrderListViewModel" />
+    <Settings:ProviderViewModel x:Key="ProviderViewModel" />
+    <Settings:ManufacturerViewModel x:Key="ManufacturerViewModel" />
+    <Settings:ParameterViewModel x:Key="ParameterViewModel" />
+    <Settings:CategoryViewModel x:Key="CategoryViewModel" />
+    <Settings:CustomerLevelViewModel x:Key="CustomerLevelViewModel" />
+    <Reports:ReportViewModel x:Key="ReportViewModel" />
+    <Products:ProductViewModel x:Key="ProductViewModel"/>
+
+
+
+
+    <!-- Converters -->
+    <Warranties:WarrantyListVisibilityConverter x:Key="WarrantyListVisibilityConverter" />
+    <Warranties:WarrantyOrderStatusConverter x:Key="WarrantyOrderStatusConverter" />
+    <Warranties:ContextMenuItemVisibilityConverter x:Key="ContextMenuItemVisibilityConverter" />
+    <Warranties:CheckMenuItemVisibilityConverter x:Key="CheckMenuItemVisibilityConverter" />
+    <Products:ProductStatusConverter x:Key="ProductStatusConverter" />
+    <Products:PhotoPathConverter x:Key="ProductPhotoPathConverter" />
+    <Orders:OrderStatusConverter x:Key="OrderStatusConverter" />
+    <Orders:CheckOrderOptionsVisibilityConverter x:Key="CheckOrderOptionsVisibilityConverter" />
+    <Orders:OrderCheckMenuItemVisibilityConverter x:Key="OrderCheckMenuItemVisibilityConverter" />
+    <Users:FeaturePermissionConverter x:Key="FeaturePermissionConverter" />
+    <Users:PhotoPathConverter x:Key="UserPhotoPathConverter" />
+
+    <!--GroupBox-->
+    <Style TargetType="GroupBox">
+        <Setter Property="BorderBrush"
+                Value="Black" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"
+                               FontSize="15"
+                               Foreground="#FF0E2291"
+                               FontWeight="SemiBold" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!-- Tab -->
+    <Style TargetType="controls:MetroTabItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:MetroTabItem">
+                    <Border Name="Border">
+                        <ContentPresenter x:Name="ContentSite"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          ContentSource="Header"
+                                          Margin="20,2" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected"
+                                 Value="True">
+                            <Setter TargetName="Border"
+                                    Property="BorderBrush"
+                                    Value="#FF1585B5" />
+                            <Setter TargetName="Border"
+                                    Property="BorderThickness"
+                                    Value="0,0,0,3" />
+                        </Trigger>
+                        <Trigger Property="IsSelected"
+                                 Value="False">
+                            <Setter Property="Foreground"
+                                    Value="#FFAEAEBD" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontWeight"
+                Value="DemiBold" />
+        <Setter Property="Foreground"
+                Value="Black" />
+        <Setter Property="FontSize"
+                Value="15" />
+    </Style>
+    <!-- TextBox -->
+    <Style TargetType="{x:Type TextBox}"
+           BasedOn="{StaticResource  MaterialDesignTextBoxBase}"
+           x:Key="UnderlineTextBox">
+        <Setter Property="BorderBrush"
+                Value="#FF34268A" />
+        <Setter Property="BorderThickness"
+                Value="0,0,0,1" />
+        <Setter Property="Margin"
+                Value="3" />
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+        <Setter Property="Height"
+                Value="36" />
+    </Style>
+    <!-- ComboBox -->
+    <Style TargetType="{x:Type ComboBox}"
+           BasedOn="{StaticResource  MaterialDesignComboBox}"
+           x:Key="UnderlineComboBox">
+        <Setter Property="BorderBrush"
+                Value="#FF34268A" />
+        <Setter Property="BorderThickness"
+                Value="0,0,0,1" />
+        <Setter Property="Margin"
+                Value="3" />
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+        <Setter Property="Height"
+                Value="36" />
+    </Style>
+    <!-- DatePicker -->
+    <Style TargetType="DatePicker"
+           BasedOn="{StaticResource  MaterialDesignDatePicker}"
+           x:Key="UnderlineDatePicker">
+        <Setter Property="BorderBrush"
+                Value="#FF34268A" />
+        <Setter Property="BorderThickness"
+                Value="0,0,0,1" />
+        <Setter Property="Margin"
+                Value="3" />
+        <Setter Property="FontSize"
+                Value="15" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="FontWeight"
+                Value="SemiBold" />
+        <Setter Property="Height"
+                Value="36" />
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,252 @@
+﻿<Window x:Class="SE214L22.View.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:SE214L22.Core.ViewModels.Products;assembly=SE214L22.Core"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:SE214L22.View"
+        mc:Ignorable="d"
+        Title="Thêm sản phẩm mới"
+        Height="500"
+        Width="600"
+        DataContext="{StaticResource ProductViewModel}"
+        WindowStartupLocation="CenterScreen">
+    <materialDesign:Card Margin="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"></RowDefinition>
+                <RowDefinition Height="0.35*"></RowDefinition>
+                <RowDefinition Height="0.35*"></RowDefinition>
+                <RowDefinition Height="0.35*"></RowDefinition>
+                <RowDefinition Height="0.35*"></RowDefinition>
+                <RowDefinition Height="0.3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.ColumnSpan="3"
+                   Content="THÊM SẢN PHẨM"
+                   FontSize="20"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontWeight="Bold"></Label>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="1">
+                <TextBlock Text="Tên sản phẩm"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Border BorderThickness="1"
+                        BorderBrush="#FFB1AEAE"
+                        CornerRadius="5"
+                        Margin="10 0 10 0">
+                    <TextBox x:Name="nameProduct"
+                             BorderBrush="#00B1AEAE"
+                             materialDesign:HintAssist.Hint="Tên sản phẩm"
+                             Margin="4 0 0 0"
+                             FontSize="14"
+                             Padding="0 2 0 2">
+                        <TextBox.Text>
+                            <Binding Path="NewProduct.Name"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vm:NameValidation></vm:NameValidation>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Grid.Row="1">
+                <TextBlock Text="Nhà sản xuất"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Border BorderThickness="1"
+                        BorderBrush="#FFB1AEAE"
+                        CornerRadius="5"
+                        Margin="10 0 10 0">
+                    <ComboBox ItemsSource="{Binding Manufacturers, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding SelectedManufacturer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Nhà sản xuất"
+                              BorderThickness="0"
+                              Margin="4 0 0 0"
+                              FontSize="14"
+                              Height="35.2"></ComboBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="2">
+                <TextBlock Text="Loại mặt hàng"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Border BorderThickness="1"
+                        BorderBrush="#FFB1AEAE"
+                        CornerRadius="5"
+                        Margin="10 0">
+                    <ComboBox ItemsSource="{Binding Categories}"
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding SelectedCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              materialDesign:HintAssist.Hint="Loại mặt hàng"
+                              BorderThickness="0"
+                              FontSize="14"
+                              Height="35.2"></ComboBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="3">
+                <TextBlock Text="Giá nhập"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Border BorderThickness="1"
+                        BorderBrush="#FFB1AEAE"
+                        CornerRadius="5"
+                        Margin="10 0 10 0">
+                    <TextBox Name="priceIn"
+                             BorderBrush="#00B1AEAE"
+                             materialDesign:HintAssist.Hint="Giá nhập"
+                             Margin="4 0 0 0"
+                             FontSize="14"
+                             Padding="0 2 0 2">
+                        <TextBox.Text>
+                            <Binding Path="NewProduct.PriceIn"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vm:IntValidation></vm:IntValidation>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Grid.Row="2">
+                <TextBlock Text="Thời hạn bảo hành (tháng)"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Border BorderThickness="1"
+                        BorderBrush="#FFB1AEAE"
+                        CornerRadius="5"
+                        Margin="10 0 10 0">
+                    <TextBox x:Name="waranty"
+                             BorderBrush="#00B1AEAE"
+                             materialDesign:HintAssist.Hint="Thời hạn bảo hành"
+                             Margin="4 0 0 0"
+                             FontSize="14"
+                             Padding="0 2 0 2">
+                        <TextBox.Text>
+                            <Binding Path="NewProduct.WarrantyPeriod"
+                                     UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <vm:IntValidation></vm:IntValidation>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="0"
+                        Grid.Row="4">
+                <TextBlock Text="Tỉ suất lợi nhuận(%)"
+                           FontWeight="Bold"
+                           Margin="10 0 0 8"
+                           FontSize="15"></TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0"
+                            BorderThickness="1"
+                            BorderBrush="#FFB1AEAE"
+                            CornerRadius="5"
+                            Margin="10 0 10 0">
+                        <TextBox x:Name="returnRate"
+                                 BorderBrush="#00B1AEAE"
+                                 materialDesign:HintAssist.Hint="Tỉ suất lợi nhuận"
+                                 Margin="4 0 0 0"
+                                 FontSize="14"
+                                 Padding="0 2 0 2">
+                            <TextBox.Text>
+                                <Binding Path="NewProduct.ReturnRate"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <vm:ReturnRateValidation></vm:ReturnRateValidation>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </Border>
+                    <Button Grid.Column="1"
+                            Foreground="White"
+                            Margin="5"
+                            Content="Đặt lại"
+                            FontSize="10"
+                            Command="{Binding ResetReturnRateAdd}"></Button>
+                </Grid>
+            </StackPanel>
+            <DockPanel Grid.Column="1"
+                        Grid.Row="3"
+                       LastChildFill="True"
+                        Grid.RowSpan="2">
+                <Button Grid.Row="3"
+                        Width="100"
+                        DockPanel.Dock="Bottom"
+                        Content="Chọn Ảnh"
+                        Command="{Binding SelectPhotoCreate}" />
+                <Image Source="{Binding NewProduct.Photo, Mode=OneWay}"
+                       Width="200"
+                       Height="120"
+                       DockPanel.Dock="Bottom"
+                       Margin="0 10 0 0" />
+            </DockPanel>
+            <!--Button thêm-->
+            <Button x:Name="btnAddProduct"
+                    Click="btnAddProduct_Click"
+                    Command="{Binding AddProduct}"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="5"
+                    Margin="65 8 65 8"
+                    FontSize="15"
+                    Width="150"
+                    FontWeight="Black"
+                    Content="Thêm mới"
+                    Foreground="White"
+                    Background="#596FB5"
+                    BorderThickness="0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="IsEnabled"
+                                Value="False" />
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=nameProduct}"
+                                               Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=priceIn}"
+                                               Value="False" />
+                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=waranty}"
+                                               Value="False" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled"
+                                        Value="True" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="btnAfterAdd"
+                    Command="{Binding ReloadProducts}"
+                    Visibility="Hidden" />
+        </Grid>
+    </materialDesign:Card>
+</Window>
+
